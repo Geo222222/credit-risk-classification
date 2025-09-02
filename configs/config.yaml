@@ -1,0 +1,36 @@
+# ML Pipeline Configuration
+
+# Random seed for reproducibility
+random_seed: 42
+
+# Data splitting configuration
+data:
+  test_size: 0.2
+  val_size: 0.2
+  target_column: "loan_status"
+  
+# Data paths
+paths:
+  data_dir: "Resources"
+  output_dir: "artifacts"
+  reports_dir: "reports"
+
+# Model configuration
+model:
+  # Options: "logistic_regression", "histogram_gradient_boosting"
+  type: "logistic_regression"
+  
+# Cost matrix for business-aware thresholding
+cost_matrix:
+  # Cost of False Negative (missing a default)
+  false_negative_cost: 1000
+  # Cost of False Positive (rejecting a good loan)
+  false_positive_cost: 100
+
+# Synthetic data configuration (fallback if no CSV found)
+synthetic_data:
+  n_samples: 10000
+  n_features: 7
+  n_informative: 5
+  n_redundant: 2
+  flip_y: 0.1
